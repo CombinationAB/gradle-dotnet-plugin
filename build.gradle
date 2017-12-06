@@ -1,0 +1,35 @@
+plugins {
+	id "groovy"
+	id "java-gradle-plugin"
+	id "maven"
+	id "maven-publish"
+}
+
+version "1.0.0"
+group "org.combination.dotnet"
+
+dependencies {
+  compile gradleApi()
+  compile localGroovy()
+}
+
+gradlePlugin {
+  plugins {
+    common {
+      id = "org.combination.dotnet"
+      implementationClass = "org.combination.dotnet.DotNetPlugin"
+    }
+  }
+}
+
+publishing {
+  repositories {
+    maven {
+      if(!"${cmb_build_maven_repo}".contains("file:")) credentials {
+        username "${cmb_build_maven_user}"
+        password "${cmb_build_maven_password}"
+      }
+      url "${cmb_build_maven_repo}"
+    }
+  }
+}
