@@ -4,13 +4,16 @@ import org.gradle.api.DefaultTask
 import org.gradle.api.tasks.Input
 import org.gradle.api.tasks.TaskAction
 
-abstract class DotNetMsbuildTask extends DotNetBaseTask {
+class DotNetMsbuildTask extends DotNetBaseTask {
     private def args = []
 
     @TaskAction
-    public def dotnetMsbuild() {
+    public def run() {
+        def a = ["msbuild"]
+        if(args != null)
+            a += args
         verbosity = null
-        exec args
+        exec a
     }
 
     public void args(String[] args) {

@@ -4,12 +4,13 @@ import org.gradle.api.DefaultTask
 import org.gradle.api.tasks.Input
 import org.gradle.api.tasks.TaskAction
 
-abstract class DotNetPackTask extends DotNetBuildTask {
-    private Boolean includeSource, includeSymbols, servicable, noBuild
+class DotNetPackTask extends DotNetBuildTask {
+    private boolean includeSource, includeSymbols, servicable, noBuild
 
     @TaskAction
-    public def dotnetPack() {
-        def args = getArgs()
+    public def run() {
+        String[] args = getArgs()
+        args[0] = "pack"
         if(includeSource)
             args += "--include-source"
         if(includeSymbols)
@@ -29,19 +30,19 @@ abstract class DotNetPackTask extends DotNetBuildTask {
         this.manifest = manifest.absolutePath
     }
 
-    public void includeSource(Boolean includeSource) {
+    public void includeSource(boolean includeSource) {
         this.includeSource = includeSource
     }
 
-    public void includeSymbols(Boolean includeSymbols) {
+    public void includeSymbols(boolean includeSymbols) {
         this.includeSymbols = includeSymbols
     }
 
-    public void servicable(Boolean servicable) {
+    public void servicable(boolean servicable) {
         this.servicable = servicable
     }
 
-    public void noBuild(Boolean noBuild) {
+    public void noBuild(boolean noBuild) {
         this.noBuild = noBuild
     }
 }

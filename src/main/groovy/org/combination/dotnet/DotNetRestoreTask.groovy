@@ -4,15 +4,15 @@ import org.gradle.api.DefaultTask
 import org.gradle.api.tasks.Input
 import org.gradle.api.tasks.TaskAction
 
-abstract class DotNetRestoreTask extends DotNetBaseTask {
-    private Boolean noCache, noDependencies, force
+class DotNetRestoreTask extends DotNetBaseTask {
+    private boolean noCache, noDependencies, force
     private String project, packages, configfile
     private def sources = []
     private def runtimes = []
 
     @TaskAction
-    public def dotnetRestore() {
-        args = []
+    public def run() {
+        args = ["restore"]
         if(project != null)
             args += project
         if(configfile != null)
@@ -50,15 +50,15 @@ abstract class DotNetRestoreTask extends DotNetBaseTask {
         this.configfile = configfile.absolutePath
     }
 
-    public void noCache(Boolean noCache) {
+    public void noCache(boolean noCache) {
         this.noCache = noCache
     }
 
-    public void force(Boolean force) {
+    public void force(boolean force) {
         this.force = force
     }
 
-    public void noDependencies(Boolean noDependencies) {
+    public void noDependencies(boolean noDependencies) {
         this.noDependencies = noDependencies
     }
 

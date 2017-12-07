@@ -4,13 +4,14 @@ import org.gradle.api.DefaultTask
 import org.gradle.api.tasks.Input
 import org.gradle.api.tasks.TaskAction
 
-abstract class DotNetTestTask extends DotNetBuildTask {
-    private Boolean noBuild, listTests
+class DotNetTestTask extends DotNetBuildTask {
+    private boolean noBuild, listTests
     private String testAdapter, settings, resultsDirectory, logger, filter, collect, diag
 
     @TaskAction
-    public def dotnetPack() {
+    public def run() {
         def args = getArgs()
+        args[0] = "test"
         if(testAdapter != null)
             args += ["--testAdapter", testAdapter]
         if(settings != null)
@@ -78,11 +79,11 @@ abstract class DotNetTestTask extends DotNetBuildTask {
         this.resultsDirectory = resultsDirectory.absolutePath
     }
 
-    public void noBuild(Boolean noBuild) {
+    public void noBuild(boolean noBuild) {
         this.noBuild = noBuild
     }
 
-    public void listTests(Boolean listTests) {
+    public void listTests(boolean listTests) {
         this.listTests = listTests
     }
 }

@@ -8,29 +8,7 @@ abstract class DotNetBaseTask extends DefaultTask {
     protected String workingDir, verbosity
 
     protected def exec(String... arguments) {
-        // Normally, dotnet should be in the path, but allow this to be overridden
-        def dotnetExecutable = System.getProperty("dotnet.executable.path")
-        if(dotnetExecutable == null) dotnetExecutable = "dotnet"
-
-        def commandLine = [dotnetExecutable]
-        if(arguments != null && arguments.length > 0)
-            commandLine = [*commandLine, *arguments]
-
-        if(verbosity != null)
-            commandLine = [*commandLine, "--verbosity", verbosity]
-
-        def wd = workingDir
-        if(wd == null)
-            wd = project.projectDir.absolutePath
-
-        return project.exec {
-			workingDir wd
-            commandLine commandLine
-        }
-    }
-
-    protected static Boolean isWindows() {
-        return System.properties['os.name'].toLowerCase().contains('windows')
+        return DotNet.exec(project, arguments, workingDir, verbosity)
     }
 
     public void workingDir(String workingDir) {
@@ -44,4 +22,6 @@ abstract class DotNetBaseTask extends DefaultTask {
     public void verbosity(String verbosity) {
         this.verbosity = verbosity.toLowerCase()
     }
+
+    public abstract def run()
 }

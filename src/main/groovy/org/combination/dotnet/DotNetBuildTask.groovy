@@ -4,14 +4,14 @@ import org.gradle.api.DefaultTask
 import org.gradle.api.tasks.Input
 import org.gradle.api.tasks.TaskAction
 
-abstract class DotNetBuildTask extends DotNetBaseTask {
-    private Boolean noDependencies, noIncremental, noRestore, force
+class DotNetBuildTask extends DotNetBaseTask {
+    private boolean noDependencies, noIncremental, noRestore, force
     private String project, configuration, framework, output, runtime, versionSuffix
     private def sources = []
     private def runtimes = []
 
     protected String[] getArgs() {
-        args = []
+        def args = ["build"]
         if(project != null)
             args += project
         if(configuration != null)
@@ -36,7 +36,7 @@ abstract class DotNetBuildTask extends DotNetBaseTask {
     }
 
     @TaskAction
-    public def dotnetBuild() {
+    public def run() {
         exec getArgs()
     }
 
@@ -64,19 +64,19 @@ abstract class DotNetBuildTask extends DotNetBaseTask {
         this.framework = framework
     }
 
-    public void force(Boolean force) {
+    public void force(boolean force) {
         this.force = force
     }
 
-    public void noDependencies(Boolean noDependencies) {
+    public void noDependencies(boolean noDependencies) {
         this.noDependencies = noDependencies
     }
 
-    public void noIncremental(Boolean noIncremental) {
+    public void noIncremental(boolean noIncremental) {
         this.noIncremental = noIncremental
     }
 
-    public void noRestore(Boolean noRestore) {
+    public void noRestore(boolean noRestore) {
         this.noRestore = noRestore
     }
 
