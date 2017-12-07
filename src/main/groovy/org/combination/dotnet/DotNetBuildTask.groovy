@@ -6,7 +6,7 @@ import org.gradle.api.tasks.TaskAction
 
 class DotNetBuildTask extends DotNetBaseTask {
     private boolean noDependencies, noIncremental, noRestore, force
-    private String project, configuration, framework, output, runtime, versionSuffix
+    private String project, configuration, framework, output, runtime, versionSuffix, configfile
     private def sources = []
     private def runtimes = []
 
@@ -16,6 +16,8 @@ class DotNetBuildTask extends DotNetBaseTask {
             args += project
         if(configuration != null)
             args += ["--configuration", configuration]
+        if(configfile != null)
+            args += ["--configfile", configfile]
         if(framework != null)
             args += ["--framework", framework]
         if(runtime != null)
@@ -38,6 +40,14 @@ class DotNetBuildTask extends DotNetBaseTask {
     @TaskAction
     public def run() {
         exec getArgs()
+    }
+
+    public void configfile(String configfile) {
+        this.configfile = configfile
+    }
+
+    public void configfile(File configfile) {
+        this.configfile = configfile.absolutePath
     }
 
     public void project(String project) {
