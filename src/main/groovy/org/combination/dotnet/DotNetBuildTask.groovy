@@ -3,6 +3,7 @@ package org.combination.dotnet
 import org.gradle.api.DefaultTask
 import org.gradle.api.tasks.Input
 import org.gradle.api.tasks.TaskAction
+import org.gradle.api.tasks.Internal
 
 class DotNetBuildTask extends DotNetBaseTask {
     private boolean noDependencies, noIncremental, noRestore, force
@@ -10,6 +11,7 @@ class DotNetBuildTask extends DotNetBaseTask {
     private def sources = []
     private def runtimes = []
 
+    @Internal
     protected String[] getArgs() {
         def args = ["build"]
         if(project != null)
