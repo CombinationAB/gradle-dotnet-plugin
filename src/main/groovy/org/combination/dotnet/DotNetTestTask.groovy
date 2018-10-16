@@ -32,7 +32,7 @@ class DotNetTestTask extends DotNetBuildTask {
             args += "--list-tests"
         if(noBuild)
             args += "--no-build"
-        exec args
+        exec (args as String[])
     }
 
     public void settings(String settings) {
