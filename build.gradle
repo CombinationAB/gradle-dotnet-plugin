@@ -5,7 +5,7 @@ plugins {
 	id "maven-publish"
 }
 
-version "1.0.0-SNAPSHOT"
+version "1.0.0"
 group "org.combination.dotnet"
 
 dependencies {
@@ -25,11 +25,11 @@ gradlePlugin {
 publishing {
   repositories {
     maven {
-      if(!"${cmb_build_maven_repo}".contains("file:")) credentials {
-        username "${cmb_build_maven_user}"
-        password "${cmb_build_maven_password}"
-      }
-      url "${cmb_build_maven_repo}"
+      url "${devops_build_repo}"
+	  credentials {
+        username "devops"
+        password "${devops_build_key}"
+	  }
     }
   }
 }
