@@ -6,6 +6,7 @@ import org.gradle.api.tasks.TaskAction
 
 abstract class DotNetBaseTask extends DefaultTask {
     protected String workingDir, verbosity
+    private def extraArgs = []
 
     protected def exec(String... arguments) {
         return DotNet.exec(project, arguments, workingDir, verbosity)
@@ -21,6 +22,10 @@ abstract class DotNetBaseTask extends DefaultTask {
 
     public void verbosity(String verbosity) {
         this.verbosity = verbosity.toLowerCase()
+    }
+
+    public void extraArg(String arg) {
+        this.extraArgs += [arg]
     }
 
     public abstract def run()

@@ -12,6 +12,7 @@ class DotNetMsbuildTask extends DotNetBaseTask {
         def a = ["msbuild"]
         if(args != null)
             a += args
+        a += extraArgs
         verbosity = null
         exec a
     }

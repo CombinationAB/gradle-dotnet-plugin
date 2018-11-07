@@ -16,6 +16,7 @@ class DotNetPublishTask extends DotNetBuildTask {
             args += "--self-contained"
         if(manifest != null)
             args += ["--manifest", manifest]
+        args += extraArgs
         exec args
     }
 

@@ -31,6 +31,7 @@ class DotNetRestoreTask extends DotNetBaseTask {
         for(String runtime : runtimes) {
             args += ["--runtime", runtime]
         }
+        args += extraArgs
         exec args
     }
 

@@ -30,6 +30,7 @@ class DotNetNugetPushTask extends DotNetBaseTask {
             args += ["--symbol-api-key", symbolApiKey]
         if(timeout >= 0)
             args += ["--timeout", timeout]
+        args += extraArgs
         exec args
     }
 

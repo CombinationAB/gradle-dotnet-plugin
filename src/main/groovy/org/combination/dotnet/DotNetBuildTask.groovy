@@ -36,6 +36,7 @@ class DotNetBuildTask extends DotNetBaseTask {
             args += ["--no-incremental"]
         if(noRestore)
             args += ["--no-restore"]
+        args += extraArgs
         return args
     }
 

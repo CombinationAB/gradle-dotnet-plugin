@@ -19,6 +19,7 @@ class DotNetPackTask extends DotNetBuildTask {
             args += "--servicable"
         if(noBuild)
             args += "--no-build"
+        args += extraArgs
         exec args
     }
 
