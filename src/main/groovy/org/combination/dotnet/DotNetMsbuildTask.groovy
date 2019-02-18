@@ -14,6 +14,7 @@ class DotNetMsbuildTask extends DotNetBaseTask {
             a += args
         a += extraArgs
         verbosity = null
+		project.logger.info((["dotnet"] + a).join(' '))
         exec a
     }
 

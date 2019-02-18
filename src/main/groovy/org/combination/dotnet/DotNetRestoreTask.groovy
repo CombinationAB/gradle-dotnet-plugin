@@ -6,15 +6,15 @@ import org.gradle.api.tasks.TaskAction
 
 class DotNetRestoreTask extends DotNetBaseTask {
     private boolean noCache, noDependencies, force
-    private String project, packages, configfile
+    private String projectName, packages, configfile
     private def sources = []
     private def runtimes = []
 
     @TaskAction
     public def run() {
         args = ["restore"]
-        if(project != null)
-            args += project
+        if(projectName != null)
+            args += projectName
         if(configfile != null)
             args += ["--configfile", configfile]
         if(packages != null)
@@ -32,15 +32,16 @@ class DotNetRestoreTask extends DotNetBaseTask {
             args += ["--runtime", runtime]
         }
         args += extraArgs
+		project.logger.info((["dotnet"] + args).join(' '))
         exec args
     }
 
     public void project(String project) {
-        this.project = project
+        this.projectName = project
     }
 
     public void project(File project) {
-        this.project = project.absolutePath
+        this.projectName = project.absolutePath
     }
 
     public void configfile(String configfile) {

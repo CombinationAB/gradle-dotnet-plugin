@@ -7,15 +7,15 @@ import org.gradle.api.tasks.Internal
 
 class DotNetBuildTask extends DotNetBaseTask {
     private boolean noDependencies, noIncremental, noRestore, force
-    private String project, configuration, framework, output, runtime, versionSuffix, configfile
+    private String projectName, configuration, framework, output, runtime, versionSuffix, configfile
     private def sources = []
     private def runtimes = []
 
     @Internal
     protected String[] getArgs() {
         def args = ["build"]
-        if(project != null)
-            args += project
+        if(projectName != null)
+            args += projectName
         if(configuration != null)
             args += ["--configuration", configuration]
         if(configfile != null)
@@ -37,6 +37,7 @@ class DotNetBuildTask extends DotNetBaseTask {
         if(noRestore)
             args += ["--no-restore"]
         args += extraArgs
+		project.logger.info((["dotnet"] + args).join(' '))
         return args
     }
 
@@ -54,11 +55,11 @@ class DotNetBuildTask extends DotNetBaseTask {
     }
 
     public void project(String project) {
-        this.project = project
+        this.projectName = project
     }
 
     public void project(File project) {
-        this.project = project.absolutePath
+        this.projectName = project.absolutePath
     }
 
     public void output(String output) {

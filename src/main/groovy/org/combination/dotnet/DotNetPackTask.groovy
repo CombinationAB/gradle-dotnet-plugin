@@ -20,6 +20,7 @@ class DotNetPackTask extends DotNetBuildTask {
         if(noBuild)
             args += "--no-build"
         args += extraArgs
+		project.logger.info((["dotnet"] + args).join(' '))
         exec args
     }
 

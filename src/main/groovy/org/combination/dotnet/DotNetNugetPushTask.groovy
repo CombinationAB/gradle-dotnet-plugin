@@ -31,6 +31,7 @@ class DotNetNugetPushTask extends DotNetBaseTask {
         if(timeout >= 0)
             args += ["--timeout", timeout]
         args += extraArgs
+		project.logger.info((["dotnet"] + args).join(' '))
         exec args
     }
 

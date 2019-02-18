@@ -12,5 +12,6 @@ class DotNetPlugin implements Plugin<Project> {
         target.task('dotnetPublish', type: DotNetPublishTask)
         target.task('dotnetRestore', type: DotNetRestoreTask)
         target.task('dotnetTest', type: DotNetTestTask)
+        target.task('dotnetSonarScanner', type: DotNetSonarScannerTask)
     }
 }

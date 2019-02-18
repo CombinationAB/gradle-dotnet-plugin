@@ -17,6 +17,7 @@ class DotNetPublishTask extends DotNetBuildTask {
         if(manifest != null)
             args += ["--manifest", manifest]
         args += extraArgs
+		project.logger.info((["dotnet"] + args).join(' '))
         exec args
     }
 
