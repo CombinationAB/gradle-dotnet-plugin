@@ -5,7 +5,7 @@ plugins {
 	id "maven-publish"
 }
 
-version "1.0.4-SNAPSHOT"
+version "1.0.4"
 group "org.combination.dotnet"
 
 dependencies {
@@ -26,10 +26,10 @@ publishing {
   repositories {
     maven {
       url "${devops_build_repo}"
-	  credentials {
+	    credentials {
         username "devops"
         password "${devops_build_key}"
-	  }
+	    }
     }
   }
 }
