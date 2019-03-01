@@ -3,9 +3,10 @@ plugins {
 	id "java-gradle-plugin"
 	id "maven"
 	id "maven-publish"
+  id "com.gradle.plugin-publish" version "0.10.1"
 }
 
-version "1.0.5.SNAPSHOT"
+version "1.0.4"
 group "org.combination.dotnet"
 
 dependencies {
@@ -13,23 +14,25 @@ dependencies {
   compile localGroovy()
 }
 
-gradlePlugin {
+pluginBundle {
+  website = 'https://www.combination.se/'
+  vcsUrl = 'https://github.com/combinationab/gradle-dotnet-plugin'
+  description = 'dotnet (.NET core) wrapper for Gradle'
+  tags = ['combination', 'dotnet', 'netcore']
+
   plugins {
-    common {
-      id = "org.combination.dotnet"
-      implementationClass = "org.combination.dotnet.DotNetPlugin"
+    dotnetPlugin {
+      displayName = 'Gradle dotnet plugin'
     }
   }
 }
 
-publishing {
-  repositories {
-    maven {
-      url "${devops_build_repo}"
-	    credentials {
-        username "devops"
-        password "${devops_build_key}"
-	    }
+
+gradlePlugin {
+  plugins {
+    dotnetPlugin {
+      id = "org.combination.dotnet"
+      implementationClass = "org.combination.dotnet.DotNetPlugin"
     }
   }
 }
