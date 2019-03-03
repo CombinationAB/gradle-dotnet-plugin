@@ -6,8 +6,8 @@ plugins {
   id "com.gradle.plugin-publish" version "0.10.1"
 }
 
-version "1.0.5-SNAPSHOT"
-group "org.combination.dotnet"
+version "1.0.4"
+group "dev.combination.dotnet"
 
 dependencies {
   compile gradleApi()
@@ -15,7 +15,7 @@ dependencies {
 }
 
 pluginBundle {
-  website = 'https://www.combination.se/'
+  website = 'https://combination.dev/'
   vcsUrl = 'https://github.com/combinationab/gradle-dotnet-plugin'
   description = 'dotnet (.NET core) wrapper for Gradle'
   tags = ['combination', 'dotnet', 'netcore']
@@ -31,8 +31,8 @@ pluginBundle {
 gradlePlugin {
   plugins {
     dotnetPlugin {
-      id = "org.combination.dotnet"
-      implementationClass = "org.combination.dotnet.DotNetPlugin"
+      id = "dev.combination.dotnet"
+      implementationClass = "dev.combination.dotnet.DotNetPlugin"
     }
   }
 }

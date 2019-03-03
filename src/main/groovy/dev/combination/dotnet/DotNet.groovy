@@ -1,4 +1,4 @@
-package org.combination.dotnet
+package dev.combination.dotnet
 
 import org.gradle.api.Project
 
