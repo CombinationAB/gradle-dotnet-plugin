@@ -7,7 +7,7 @@ import org.gradle.api.tasks.TaskAction
 class DotNetNugetPushTask extends DotNetBaseTask {
     private String packagePath, source, symbolSource, apiKey, symbolApiKey
     private int timeout = -1
-    private boolean noSymbols, disableBuffering
+    private boolean noSymbols, disableBuffering, forceEnglishOutput
 
     @TaskAction
     public def run() {
@@ -20,6 +20,10 @@ class DotNetNugetPushTask extends DotNetBaseTask {
             args += "--no-symbols"
         if(disableBuffering)
             args += "--disable-buffering"
+        if(forceEnglishOutput)
+            args += "--force-english-output"
+        if(noServiceEndpoint)
+            args += "--no-service-endpoint"
         if(source != null)
             args += ["--source", source]
         if(symbolSource != null)
@@ -57,6 +61,14 @@ class DotNetNugetPushTask extends DotNetBaseTask {
 
     public void symbolApiKey(String symbolApiKey) {
         this.symbolApiKey = symbolApiKey
+    }
+
+    public void forceEnglishOutput(boolean forceEnglishOutput) {
+        this.forceEnglishOutput = forceEnglishOutput
+    }
+
+    public void noServiceEndpoint(boolean noServiceEndpoint) {
+        this.noServiceEndpoint = noServiceEndpoint
     }
 
     public void noSymbols(boolean noSymbols) {
