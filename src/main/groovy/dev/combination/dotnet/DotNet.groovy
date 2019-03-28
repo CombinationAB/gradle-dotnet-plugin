@@ -18,6 +18,7 @@ class DotNet {
         if(workDir == null)
             workDir = project.projectDir.absolutePath
 
+		project.logger.info("Executing: " + cmdline.join(' '))
         return project.exec {
 			workingDir workDir
             commandLine cmdline

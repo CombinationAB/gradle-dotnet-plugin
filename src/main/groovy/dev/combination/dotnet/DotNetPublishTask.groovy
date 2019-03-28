@@ -10,7 +10,7 @@ class DotNetPublishTask extends DotNetBuildTask {
 
     @TaskAction
     public def run() {
-        def args = getArgs()
+        String[] args = getArgs()
         args[0] = "publish"
         if(selfContained)
             args += "--self-contained"

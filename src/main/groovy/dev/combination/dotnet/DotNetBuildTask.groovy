@@ -37,7 +37,6 @@ class DotNetBuildTask extends DotNetBaseTask {
         if(noRestore)
             args += ["--no-restore"]
         args += extraArgs
-		project.logger.info((["dotnet"] + args).join(' '))
         return args
     }
 
