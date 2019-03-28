@@ -12,7 +12,7 @@ class DotNetRestoreTask extends DotNetBaseTask {
 
     @TaskAction
     public def run() {
-        def args = ["restore"]
+        String[] args = ["restore"]
         if(projectName != null)
             args += projectName
         if(configfile != null)
