@@ -7,7 +7,7 @@ import org.gradle.api.tasks.TaskAction
 class DotNetNugetPushTask extends DotNetBaseTask {
     private String packagePath, source, symbolSource, apiKey, symbolApiKey
     private int timeout = -1
-    private boolean noSymbols, disableBuffering, forceEnglishOutput
+    private boolean noSymbols, disableBuffering, forceEnglishOutput, noServiceEndpoint
 
     @TaskAction
     public def run() {
