@@ -7,16 +7,18 @@ import org.gradle.api.tasks.Internal
 
 class DotNetSonarScannerTask extends DotNetBaseTask {
     private boolean selfContained
-    private String command, key, version
+    private String command, key, version, organization
     private HashMap<String, String> props = new HashMap<String, String>()
 
     @Internal
     protected String[] getArgs() {
         def args = ["sonarscanner", command]
-        if(key != null)
+        if(key)
             args += "/k:${key}"
-        if(version != null)
+        if(version)
             args += "/v:${version}"
+        if(organization)
+            args += "/o:${organization}"
 		props.each{ k, v -> args += "/d:${k}=${v}" }
         args += extraArgs
 		project.logger.info((["dotnet"] + args).join(' '))
@@ -38,6 +40,10 @@ class DotNetSonarScannerTask extends DotNetBaseTask {
 
     public void version(String version) {
         this.version = version
+    }
+
+    public void organization(String organization) {
+        this.organization = organization
     }
 
     public void login(String token) {
