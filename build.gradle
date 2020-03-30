@@ -3,10 +3,10 @@ plugins {
 	id "java-gradle-plugin"
 	id "maven"
 	id "maven-publish"
-  id "com.gradle.plugin-publish" version "0.10.1"
+  id "com.gradle.plugin-publish" version "0.11.0"
 }
 
-version "1.0.11-SNAPSHOT"
+version "1.0.11"
 group "dev.combination.dotnet"
 
 dependencies {
