@@ -10,7 +10,7 @@ class DotNetSwaggerToFileTask extends DotNetBaseTask {
 
     @Internal
     protected String[] getArgs() {
-        def args = ["swagger tofile"]
+        def args = ["swagger", "tofile"]
         if(output)
             args += ["--output", output]
         if(startupassembly)
