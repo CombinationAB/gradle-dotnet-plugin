@@ -6,7 +6,8 @@ import org.gradle.api.tasks.TaskAction
 
 class DotNetTestTask extends DotNetBuildTask {
     private boolean noBuild, listTests
-    private String testAdapter, settings, resultsDirectory, logger, filter, collect, diag
+    private def filters
+    private String testAdapter, settings, resultsDirectory, logger, collect, diag
 
     @TaskAction
     public def run() {
@@ -18,8 +19,6 @@ class DotNetTestTask extends DotNetBuildTask {
             args += ["--settings", settings]
         if(logger != null)
             args += ["--logger", logger]
-        if(filter != null)
-            args += ["--filter", filter]
         if(diag != null)
             args += ["--diag", diag]
         if(collect != null)
@@ -31,7 +30,11 @@ class DotNetTestTask extends DotNetBuildTask {
         if(listTests)
             args += "--list-tests"
         if(noBuild)
-            args += "--no-build"
+            args += "--no-build"            
+        for(String filter : filters) {
+            args += ["--filter", filter]
+        }
+
         args += extraArgs
         exec (args as String[])
     }
@@ -57,9 +60,9 @@ class DotNetTestTask extends DotNetBuildTask {
     }
 
     public void filter(String filter) {
-        this.filter = filter
+        this.filters += [filter]
     }
-
+    
     public void collect(String collect) {
         this.collect = collect
     }
