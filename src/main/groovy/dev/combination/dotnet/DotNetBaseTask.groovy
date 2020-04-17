@@ -7,10 +7,10 @@ import org.gradle.api.tasks.TaskAction
 abstract class DotNetBaseTask extends DefaultTask {
     protected String workingDir, verbosity
     protected def extraArgs = []
-    protected HashMap<String, Object> environmentArguments = new HashMap<String, Object>()
+    protected HashMap<String, Object> environmentVariables = new HashMap<String, Object>()
 
     protected def exec(String... arguments) {
-        return DotNet.exec(project, arguments, workingDir, verbosity, environmentArguments)
+        return DotNet.exec(project, arguments, workingDir, verbosity, environmentVariables)
     }
 
     public void extraArg(String arg) {
@@ -29,8 +29,12 @@ abstract class DotNetBaseTask extends DefaultTask {
         this.workingDir = workingDir.absolutePath
     }
     
-    public void environmentArguments(HashMap<String, Object> values) {
-        this.environmentArguments << values
+    public void environmentVariable(String key, Object value) {
+        this.environmentVariables[key] = value
+    }
+    
+    public void environmentVariables(HashMap<String, Object> values) {
+        this.environmentVariables << values
     }
 
     public abstract def run()
