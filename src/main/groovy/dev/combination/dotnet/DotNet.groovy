@@ -3,7 +3,7 @@ package dev.combination.dotnet
 import org.gradle.api.Project
 
 class DotNet {
-    public static def exec(Project project, String[] arguments, String workDir = null, String verbosity = null) {
+    public static def exec(Project project, String[] arguments, String workDir = null, String verbosity = null, Map<String, Object> environmentArguments = null) {
         // Normally, dotnet should be in the path, but allow this to be overridden
         def dotnetExecutable = System.getProperty("dotnet.executable.path")
         if(dotnetExecutable == null) dotnetExecutable = "dotnet"
@@ -22,6 +22,7 @@ class DotNet {
         return project.exec {
 			workingDir workDir
             commandLine cmdline
+            environment environmentArguments
         }
     }
 
