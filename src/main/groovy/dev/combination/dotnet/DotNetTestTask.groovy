@@ -5,8 +5,8 @@ import org.gradle.api.tasks.Input
 import org.gradle.api.tasks.TaskAction
 
 class DotNetTestTask extends DotNetBuildTask {
+    private def filters = []
     private boolean noBuild, listTests
-    private def filters
     private String testAdapter, settings, resultsDirectory, logger, collect, diag
 
     @TaskAction
