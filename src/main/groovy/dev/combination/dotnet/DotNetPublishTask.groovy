@@ -5,19 +5,20 @@ import org.gradle.api.tasks.Input
 import org.gradle.api.tasks.TaskAction
 
 class DotNetPublishTask extends DotNetBuildTask {
-    private boolean selfContained
+    private Boolean selfContained
     private String manifest
 
     @TaskAction
     public def run() {
         String[] args = getArgs()
         args[0] = "publish"
-        if(selfContained)
-            args += "--self-contained"
+        if(selfContained == true)
+            args += ["--self-contained", "true"]
+        if(selfContained == false)
+            args += ["--self-contained", "false"]
         if(manifest != null)
             args += ["--manifest", manifest]
-        args += extraArgs
-		project.logger.info((["dotnet"] + args).join(' '))
+	project.logger.info((["dotnet"] + args).join(' '))
         exec args
     }
 
@@ -29,7 +30,7 @@ class DotNetPublishTask extends DotNetBuildTask {
         this.manifest = manifest.absolutePath
     }
 
-    public void selfContained(boolean selfContained) {
+    public void selfContained(Boolean selfContained) {
         this.selfContained = selfContained
     }
 }
