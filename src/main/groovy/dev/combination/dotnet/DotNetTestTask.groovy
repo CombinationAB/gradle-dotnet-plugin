@@ -35,7 +35,6 @@ class DotNetTestTask extends DotNetBuildTask {
             args += ["--filter", filter]
         }
 
-        args += extraArgs
         exec (args as String[])
     }
 
