@@ -1,5 +1,7 @@
 # Gradle `dotnet` plugin
 
+## ⚠️ Archived: This project is no longer in active development. Please find other alternatives.
+
 Gradle wrapper to the `dotnet` binary.
 
 ## Prerequisites
